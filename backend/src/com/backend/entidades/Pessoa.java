@@ -5,22 +5,55 @@ import java.lang.Long;
 import java.lang.String;
 import java.time.LocalDate;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Pessoa implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
+	public enum TipoPessoa {FISICA, JURIDICA}
 	   
 	@Id
+	@NotNull(message = "id da pessoa é obrigatório")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idPessoa;
+	
+	@NotNull(message = "Nome da pessoa é obrigatório")
+	@Size(max = 100, message="No máximo {max} caracteres. Você digitou: ${validatedValue}")
+	@Pattern(regexp = "[A-Za-z]*", message = "Não deve conter números")
 	private String nomePessoa;
+	
+	@Size(min = 11, max = 14, message="No mínimo {min} e no máximo {max} caracteres. Você digitou: ${validatedValue}")
+	@Pattern(regexp = "[0-9]*", message = "Deve conter somente números")
 	private String documentoPessoa;
+	
+	@NotNull(message = "Data de nasciemnto da pessoa é obrigatório")
+	@Size(max = 6, message="No máximo {max} caracteres. Você digitou: ${validatedValue}")
 	private LocalDate dataDeNascimentoPessoa;
+	
+	@NotNull(message = "Nome da pessoa é obrigatório")
+	@Size(max = 100, message="No máximo {max} caracteres. Você digitou: ${validatedValue}")
+	@Pattern(regexp = "[A-Za-z]*", message = "Não deve conter números")
 	private String nomeDaMaePessoa;
+	
+	@NotNull(message = "Nome da pessoa é obrigatório")
+	@Size(max = 100, message="No máximo {max} caracteres. Você digitou: ${validatedValue}")
+	@Pattern(regexp = "[A-Za-z]*", message = "Não deve conter números")
 	private String nomeDoPaiPessoa;
+	
+	@NotNull(message = "Data de cadastro da pessoa é obrigatório")
+	@Size(max = 6, message="No máximo {max} caracteres. Você digitou: ${validatedValue}")
 	private LocalDate dataDeCadastroPessoa;
-	private String loginOperador;
-	private String tipoPessoa;
-	private static final long serialVersionUID = 1L;
+	
+	@ManyToOne
+	@JoinColumn(name = "loginOperador")
+	private Operador loginOperador;
+	
+	@NotNull(message = "Tipo da pessoa é obrigatório")
+	private TipoPessoa tipoPessoa;
 
 	public Pessoa() {
 		super();
@@ -74,18 +107,18 @@ public class Pessoa implements Serializable {
 	public void setDataDeCadastroPessoa(LocalDate dataDeCadastroPessoa) {
 		this.dataDeCadastroPessoa = dataDeCadastroPessoa;
 	}   
-	public String getLoginOperador() {
+	public Operador getLoginOperador() {
 		return this.loginOperador;
 	}
 
-	public void setLoginOperador(String loginOperador) {
+	public void setLoginOperador(Operador loginOperador) {
 		this.loginOperador = loginOperador;
 	}   
-	public String getTipoPessoa() {
+	public TipoPessoa getTipoPessoa() {
 		return this.tipoPessoa;
 	}
 
-	public void setTipoPessoa(String tipoPessoa) {
+	public void setTipoPessoa(TipoPessoa tipoPessoa) {
 		this.tipoPessoa = tipoPessoa;
 	}
    

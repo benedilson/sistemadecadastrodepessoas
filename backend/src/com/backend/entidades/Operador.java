@@ -18,12 +18,15 @@ public class Operador implements Serializable {
 	
 	@Id
 	@NotNull(message = "id do operador é obrigatório")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idOperador;
 	
+	@NotNull(message = "Nome do operador é obrigatório")
 	@Size(max = 100, message="No máximo {max} caracteres. Você digitou: ${validatedValue}")
 	@Pattern(regexp = "[A-Za-z]*", message = "Não deve conter números")
 	private String nomeOperador;
 	
+	@NotNull(message = "Login do operador é obrigatório")
 	@Size(max = 15, message="No máximo {max} caracteres. Você digitou: ${validatedValue}")
 	@Pattern(regexp = "[A-Za-z\\-\\_]*", message = "Deve conter somente letras, - ou _")
 	private String loginOperador;
