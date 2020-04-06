@@ -3,7 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/persistence"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="backend">		
+	<persistence-unit name="dev-backend">		
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>br.com.backend.entidades.Operador</class>
 		<class>br.com.backend.entidades.Pessoa</class>
@@ -14,6 +14,8 @@
             <property name="javax.persistence.jdbc.user" value="SA"/>
             <property name="javax.persistence.jdbc.password" value="bjBL19!("/>
 		
+		    <property name="hibernate.show_sql" value="true"/>
+		    <property name="hibernate.format_sql" value="true"/>
 			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />

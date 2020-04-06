@@ -10,7 +10,7 @@ public class JpaUtils {
 	
 	public static EntityManager getEntityManager() {
 		if(ENTITY_MANAGER_FACTORY == null) {
-			ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("backend");
+			ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("dev-backend");
 		}
 		
 		return ENTITY_MANAGER_FACTORY.createEntityManager();

@@ -5,23 +5,28 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.hibernate.Session;
+
 import br.com.backend.entidades.Operador;
 import br.com.backend.services.interfaces.CrudService;
 import br.com.backend.utils.JpaUtils;
 
 public class OperadorService implements CrudService<Operador, Long> {
 
+	private EntityManager em;
+	private List<Operador> operadorList = null;
+	private Operador operadorTemp = null;
+
 	@Override
 	public List<Operador> all() {
-		List<Operador> operadorList = new ArrayList<Operador>();
-		EntityManager em = null;
+		operadorList = new ArrayList<Operador>();
+		em = null;
 		try {
 			em = JpaUtils.getEntityManager();
 			operadorList = em.createQuery("from Operador", Operador.class).getResultList();
 			return operadorList;
-		}
-		finally {
-			if(em != null) {
+		} finally {
+			if (em != null) {
 				em.close();
 			}
 		}
@@ -29,23 +34,31 @@ public class OperadorService implements CrudService<Operador, Long> {
 
 	@Override
 	public Operador byId(Long id) {
-		// TODO Auto-generated method stub
+		Operador resultado = null;
+		em = null;
+		try {
+			em = JpaUtils.getEntityManager();
+			resultado = em.find(Operador.class, id);
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public Operador insert(Operador entity) {
-		
-		EntityManager em = null;
+		em = null;
 		try {
 			em = JpaUtils.getEntityManager();
 			em.getTransaction().begin();
 			em.persist(entity);
 			em.getTransaction().commit();
-			
+
 			return entity;
 		} finally {
-			if(em != null) {
+			if (em != null) {
 				em.close();
 			}
 		}
@@ -53,20 +66,52 @@ public class OperadorService implements CrudService<Operador, Long> {
 
 	@Override
 	public Operador update(Operador entity) {
-		// TODO Auto-generated method stub
-		return null;
+		em = null;
+		try {
+			em = JpaUtils.getEntityManager();
+			em.getTransaction().begin();
+			em.merge(entity);
+			// em.unwrap(Session.class).update(entity);
+			em.getTransaction().commit();
+
+			return entity;
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
 	}
 
 	@Override
 	public void delete(Operador entity) {
-		// TODO Auto-generated method stub
-		
+		em = null;
+		try {
+			em = JpaUtils.getEntityManager();
+			em.getTransaction().begin();
+			em.remove(entity);
+			em.getTransaction().commit();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		
+		em = null;
+		try {
+			em = JpaUtils.getEntityManager();
+			operadorTemp = em.find(Operador.class, id);
+			if (operadorTemp != null) {
+				em.getTransaction().begin();
+				em.remove(operadorTemp);
+				em.getTransaction().commit();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
 	}
-
 }
