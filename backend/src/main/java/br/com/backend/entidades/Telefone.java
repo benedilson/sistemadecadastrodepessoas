@@ -1,9 +1,8 @@
-package com.backend.entidades;
+package br.com.backend.entidades;
 
 import java.io.Serializable;
 import java.lang.Long;
 import java.lang.String;
-import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -35,7 +34,7 @@ public class Telefone implements Serializable {
 	private TipoTelefone tipoTelefone;
 	
 	@NotNull(message = "A data do cadastro do telefone é obrigatório")
-	private LocalDate dataDeCadastroTelefone;
+	private String dataDeCadastroTelefone;
 	
 	@ManyToOne
 	@JoinColumn(name = "loginOperador")
@@ -76,11 +75,11 @@ public class Telefone implements Serializable {
 	public void setTipoTelefone(TipoTelefone tipoTelefone) {
 		this.tipoTelefone = tipoTelefone;
 	}   
-	public LocalDate getDataDeCadastroTelefone() {
+	public String getDataDeCadastroTelefone() {
 		return this.dataDeCadastroTelefone;
 	}
 
-	public void setDataDeCadastroTelefone(LocalDate dataDeCadastroTelefone) {
+	public void setDataDeCadastroTelefone(String dataDeCadastroTelefone) {
 		this.dataDeCadastroTelefone = dataDeCadastroTelefone;
 	}   
 	public Operador getLoginOperador() {

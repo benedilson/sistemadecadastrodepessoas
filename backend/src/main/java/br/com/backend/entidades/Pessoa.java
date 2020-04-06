@@ -1,9 +1,8 @@
-package com.backend.entidades;
+package br.com.backend.entidades;
 
 import java.io.Serializable;
 import java.lang.Long;
 import java.lang.String;
-import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -32,7 +31,7 @@ public class Pessoa implements Serializable {
 	
 	@NotNull(message = "Data de nasciemnto da pessoa é obrigatório")
 	@Size(max = 6, message="No máximo {max} caracteres. Você digitou: ${validatedValue}")
-	private LocalDate dataDeNascimentoPessoa;
+	private String dataDeNascimentoPessoa;
 	
 	@NotNull(message = "Nome da pessoa é obrigatório")
 	@Size(max = 100, message="No máximo {max} caracteres. Você digitou: ${validatedValue}")
@@ -46,7 +45,7 @@ public class Pessoa implements Serializable {
 	
 	@NotNull(message = "Data de cadastro da pessoa é obrigatório")
 	@Size(max = 6, message="No máximo {max} caracteres. Você digitou: ${validatedValue}")
-	private LocalDate dataDeCadastroPessoa;
+	private String dataDeCadastroPessoa;
 	
 	@ManyToOne
 	@JoinColumn(name = "loginOperador")
@@ -79,11 +78,11 @@ public class Pessoa implements Serializable {
 	public void setDocumentoPessoa(String documentoPessoa) {
 		this.documentoPessoa = documentoPessoa;
 	}   
-	public LocalDate getDataDeNascimentoPessoa() {
+	public String getDataDeNascimentoPessoa() {
 		return this.dataDeNascimentoPessoa;
 	}
 
-	public void setDataDeNascimentoPessoa(LocalDate dataDeNascimentoPessoa) {
+	public void setDataDeNascimentoPessoa(String dataDeNascimentoPessoa) {
 		this.dataDeNascimentoPessoa = dataDeNascimentoPessoa;
 	}   
 	public String getNomeDaMaePessoa() {
@@ -100,11 +99,11 @@ public class Pessoa implements Serializable {
 	public void setNomeDoPaiPessoa(String nomeDoPaiPessoa) {
 		this.nomeDoPaiPessoa = nomeDoPaiPessoa;
 	}   
-	public LocalDate getDataDeCadastroPessoa() {
+	public String getDataDeCadastroPessoa() {
 		return this.dataDeCadastroPessoa;
 	}
 
-	public void setDataDeCadastroPessoa(LocalDate dataDeCadastroPessoa) {
+	public void setDataDeCadastroPessoa(String dataDeCadastroPessoa) {
 		this.dataDeCadastroPessoa = dataDeCadastroPessoa;
 	}   
 	public Operador getLoginOperador() {

@@ -1,9 +1,8 @@
-package com.backend.entidades;
+package br.com.backend.entidades;
 
 import java.io.Serializable;
 import java.lang.Long;
 import java.lang.String;
-import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -14,7 +13,7 @@ public class Operador implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	public enum Perfil {GERENTE, ANALISTA}
+	public enum Perfil {GERENTE, ANALISTA, ADMINISTRADOR, COMUM}
 	
 	@Id
 	@NotNull(message = "id do operador é obrigatório")
@@ -39,7 +38,7 @@ public class Operador implements Serializable {
 	private Perfil perfilOperador;
 	
 	@NotNull(message = "Data de Cadastro do operador é obrigatório")
-	private LocalDate dataDeCadastroOperador;
+	private String dataDeCadastroOperador;
 	
 	public Operador() {
 		super();
@@ -79,11 +78,11 @@ public class Operador implements Serializable {
 	public void setPerfilOperador(Perfil perfilOperador) {
 		this.perfilOperador = perfilOperador;
 	}   
-	public LocalDate getDataDeCadastroOperador() {
+	public String getDataDeCadastroOperador() {
 		return this.dataDeCadastroOperador;
 	}
 
-	public void setDataDeCadastroOperador(LocalDate dataDeCadastroOperador) {
+	public void setDataDeCadastroOperador(String dataDeCadastroOperador) {
 		this.dataDeCadastroOperador = dataDeCadastroOperador;
 	}
    

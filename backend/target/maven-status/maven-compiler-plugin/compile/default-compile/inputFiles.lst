@@ -1,0 +1,8 @@
+/home/benedilson/eclipse/jee/eclipse-workspace/SCdeP/backend/src/main/java/br/com/backend/services/interfaces/CrudService.java
+/home/benedilson/eclipse/jee/eclipse-workspace/SCdeP/backend/src/main/java/br/com/backend/utils/MetodosUteis.java
+/home/benedilson/eclipse/jee/eclipse-workspace/SCdeP/backend/src/main/java/br/com/backend/entidades/Pessoa.java
+/home/benedilson/eclipse/jee/eclipse-workspace/SCdeP/backend/src/main/java/br/com/backend/entidades/Telefone.java
+/home/benedilson/eclipse/jee/eclipse-workspace/SCdeP/backend/src/main/java/br/com/backend/utils/JpaUtils.java
+/home/benedilson/eclipse/jee/eclipse-workspace/SCdeP/backend/src/main/java/br/com/backend/entidades/Operador.java
+/home/benedilson/eclipse/jee/eclipse-workspace/SCdeP/backend/src/main/java/br/com/backend/tests/OperadorTest.java
+/home/benedilson/eclipse/jee/eclipse-workspace/SCdeP/backend/src/main/java/br/com/backend/services/impl/OperadorService.java
