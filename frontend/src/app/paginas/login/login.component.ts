@@ -1,5 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Usuario} from '../../interfaces/usuario';
+import {Component} from '@angular/core';
+
+import {AuthService} from './auth.service';
+import {Usuario} from '../../classes/usuario';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +10,15 @@ import {Usuario} from '../../interfaces/usuario';
 })
 export class LoginComponent {
 
-  @Input() usuario: Usuario = <Usuario>{};
-  @Output() outPutUsusario: EventEmitter<Usuario> = new EventEmitter<Usuario>();
+  public usuario: Usuario = new Usuario();
+
+  constructor(private authService: AuthService) {
+  }
 
   onSubmit() {
-      this.outPutUsusario.emit(this.usuario);
+      this.authService.fazerLogin(this.usuario);
   }
+
+
 
 }

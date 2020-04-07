@@ -1,23 +1,40 @@
-import { Injectable } from '@angular/core';
-import {Usuario} from '../../interfaces/usuario';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Router} from '@angular/router';
+import {Usuario} from '../../classes/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private usuarioAutenticado: boolean = false;
+  private ususrioAutenticado = false;
 
-  constructor(private route: Router) { }
+  mostrarEmitter = new EventEmitter<boolean>();
+
+  constructor(private router: Router) { }
 
   fazerLogin(usuario: Usuario) {
-      if (usuario.nome === 'admin' && usuario.senha === '123') {
-         this.usuarioAutenticado = true;
-
-         this.route.navigate(['/']);
+      if (usuario.nomeUsuario === 'a' && usuario.senhaUsuario === 'a') {
+        usuario.perfilUsuario = 'ADMINISTRADOR';
+        this.ususrioAutenticado = true;
+        this.mostrarEmitter.emit(true);
+        this.router.navigate(['/operador/listar']);
+      } else if (usuario.nomeUsuario === 'g' && usuario.senhaUsuario === 'g') {
+        usuario.perfilUsuario = 'GERENTE';
+        this.ususrioAutenticado = true;
+        this.mostrarEmitter.emit(true);
+        this.router.navigate(['/pessoa/listar']);
+      } else if (usuario.nomeUsuario === 'analista' && usuario.senhaUsuario === 'analista') {
+        usuario.perfilUsuario = 'ANALISTA';
+        this.ususrioAutenticado = true;
+        this.mostrarEmitter.emit(true);
+        this.router.navigate(['/pessoa/listar']);
       } else {
-        this.usuarioAutenticado = false;
+        this.mostrarEmitter.emit(false);
       }
+  }
+
+  usuarioEstaAutenticado() {
+    return this.ususrioAutenticado;
   }
 }

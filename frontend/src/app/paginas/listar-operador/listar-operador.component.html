@@ -3,7 +3,7 @@
     <div class="col-md-8 mx-auto">
       <app-error-msg></app-error-msg>
       <div class="text-right">
-        <button type="button" class="btn btn-success" routerLink="/operador/criar">Novo operador</button>
+        <button type="button" class="btn btn-success" (click)="getListaOperadores()" routerLink="/operador/criar">Novo operador</button>
       </div>
       <div class="text-center" *ngIf="!existemOperadores()">
         Nenhum operador cadastrado.

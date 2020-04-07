@@ -19,6 +19,7 @@ import { EditarTelefoneComponent } from './paginas/editar-telefone/editar-telefo
 import { EditarPessoaComponent } from './paginas/editar-pessoa/editar-pessoa.component';
 import { ListarPessoaComponent } from './paginas/listar-pessoa/listar-pessoa.component';
 import { ListarTelefoneComponent } from './paginas/listar-telefone/listar-telefone.component';
+import {AuthGuard} from './guard/auth-guard';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { ListarTelefoneComponent } from './paginas/listar-telefone/listar-telefo
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

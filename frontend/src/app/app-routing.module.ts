@@ -10,22 +10,23 @@ import {EditarTelefoneComponent} from './paginas/editar-telefone/editar-telefone
 import {InserirTelefoneComponent} from './paginas/inserir-telefone/inserir-telefone.component';
 import {ListarPessoaComponent} from './paginas/listar-pessoa/listar-pessoa.component';
 import {ListarTelefoneComponent} from './paginas/listar-telefone/listar-telefone.component';
+import {AuthGuard} from './guard/auth-guard';
 
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
 
-  {path: 'operador/listar', component: ListarOperadorComponent},
-  {path: 'operador/criar', component: CriarOperadorComponent},
-  {path: 'operador/editar/:id', component: EditarOperadorComponent},
+  {path: 'operador/listar', component: ListarOperadorComponent, canActivate: [AuthGuard]},
+  {path: 'operador/criar', component: CriarOperadorComponent, canActivate: [AuthGuard]},
+  {path: 'operador/editar/:id', component: EditarOperadorComponent, canActivate: [AuthGuard]},
 
-  {path: 'pessoa/listar', component: ListarPessoaComponent},
-  {path: 'pessoa/editar/:id', component: EditarPessoaComponent},
-  {path: 'pessoa/criar', component: InserirPessoaComponent},
+  {path: 'pessoa/listar', component: ListarPessoaComponent, canActivate: [AuthGuard]},
+  {path: 'pessoa/editar/:id', component: EditarPessoaComponent, canActivate: [AuthGuard]},
+  {path: 'pessoa/criar', component: InserirPessoaComponent, canActivate: [AuthGuard]},
 
-  {path: 'telefone/listar', component: ListarTelefoneComponent},
-  {path: 'telefone/editar/:id', component: EditarTelefoneComponent},
-  {path: 'telefone/criar', component: InserirTelefoneComponent},
+  {path: 'telefone/listar', component: ListarTelefoneComponent, canActivate: [AuthGuard]},
+  {path: 'telefone/editar/:id', component: EditarTelefoneComponent, canActivate: [AuthGuard]},
+  {path: 'telefone/criar', component: InserirTelefoneComponent, canActivate: [AuthGuard]},
 
   {path: '**', redirectTo: ''}
 ];
