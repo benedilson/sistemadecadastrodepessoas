@@ -20,6 +20,7 @@ import { EditarPessoaComponent } from './paginas/editar-pessoa/editar-pessoa.com
 import { ListarPessoaComponent } from './paginas/listar-pessoa/listar-pessoa.component';
 import { ListarTelefoneComponent } from './paginas/listar-telefone/listar-telefone.component';
 import {AuthGuard} from './guard/auth-guard';
+import { ListarPessoaTelefoneComponent } from './paginas/listar-pessoa-telefone/listar-pessoa-telefone.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {AuthGuard} from './guard/auth-guard';
     EditarTelefoneComponent,
     EditarPessoaComponent,
     ListarPessoaComponent,
-    ListarTelefoneComponent
+    ListarTelefoneComponent,
+    ListarPessoaTelefoneComponent
   ],
   imports: [
     BrowserModule,

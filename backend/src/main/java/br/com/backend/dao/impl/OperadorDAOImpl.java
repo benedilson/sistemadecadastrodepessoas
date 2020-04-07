@@ -1,17 +1,15 @@
-package br.com.backend.services.impl;
+package br.com.backend.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.hibernate.Session;
-
+import br.com.backend.dao.interfaces.GenericoDAO;
 import br.com.backend.entidades.Operador;
-import br.com.backend.services.interfaces.CrudService;
 import br.com.backend.utils.JpaUtils;
 
-public class OperadorService implements CrudService<Operador, Long> {
+public class OperadorDAOImpl implements GenericoDAO<Operador, Long> {
 
 	private EntityManager em;
 	private List<Operador> operadorList = null;

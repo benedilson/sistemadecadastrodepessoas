@@ -8,15 +8,15 @@ import java.util.Scanner;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.com.backend.dao.impl.OperadorDAOImpl;
+import br.com.backend.dao.interfaces.GenericoDAO;
 import br.com.backend.entidades.Operador;
-import br.com.backend.services.impl.OperadorService;
-import br.com.backend.services.interfaces.CrudService;
 import br.com.backend.utils.MetodosUteis;
 
 public class OperadorTest {
 
 	private static Scanner SCANNER = null;
-	private CrudService<Operador, Long> operadorService = null;
+	private GenericoDAO<Operador, Long> operadorService = null;
 	private Operador operador = null, operadorTemp = null;
 	private List<Operador> operadores = null;
 
@@ -30,7 +30,7 @@ public class OperadorTest {
 		operador.setDataDeCadastroOperador(MetodosUteis.AjustaLocalDate(LocalDate.now()));
 
 		try {
-			operadorService = new OperadorService();
+			operadorService = new OperadorDAOImpl();
 			operadorTemp = operadorService.insert(operador);
 
 			Assert.assertNotNull(operadorTemp);
@@ -42,7 +42,7 @@ public class OperadorTest {
 	@Test
 	public void verificandoListagemDeTodosOsOperarios() {
 		try {
-			operadorService = new OperadorService();
+			operadorService = new OperadorDAOImpl();
 			operadores = new ArrayList<Operador>();
 			operadores = operadorService.all();
 

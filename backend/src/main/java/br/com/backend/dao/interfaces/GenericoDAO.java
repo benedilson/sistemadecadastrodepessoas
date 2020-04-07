@@ -1,8 +1,8 @@
-package br.com.backend.services.interfaces;
+package br.com.backend.dao.interfaces;
 
 import java.util.List;
 
-public interface CrudService<T, K> {
+public interface GenericoDAO<T, K> {
 	List<T> all();
 	T byId(K id);
 	T insert(T entity);

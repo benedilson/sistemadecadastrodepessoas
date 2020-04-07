@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Telefone} from '../../interfaces/telefone';
 import {TelefoneService} from '../../services/telefone.service';
 import {ErrorMsgComponent} from '../../compartilhado/error-msg/error-msg.component';
+import {Usuario} from '../../classes/usuario';
+import {AuthService} from '../login/auth.service';
 
 @Component({
   selector: 'app-listar-telefone',
@@ -9,9 +11,10 @@ import {ErrorMsgComponent} from '../../compartilhado/error-msg/error-msg.compone
   styleUrls: ['./listar-telefone.component.css']
 })
 export class ListarTelefoneComponent implements OnInit {
+  public ususario: Usuario = this.authService.obtemDadosDoUsuario();
   public telefones: Telefone[];
   @ViewChild(ErrorMsgComponent) errorMsgComponent: ErrorMsgComponent;
-  constructor(private telefoneService: TelefoneService) { }
+  constructor(private telefoneService: TelefoneService, private authService: AuthService) { }
 
   ngOnInit() {
     this.getListaTelefones();
