@@ -13,7 +13,7 @@ public class Operador implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	public enum Perfil {GERENTE, ANALISTA, ADMINISTRADOR, COMUM}
+	public enum Perfil {GERENTE, ANALISTA, ADMINISTRADOR}
 	
 	@Id
 	@NotNull(message = "id do operador é obrigatório")

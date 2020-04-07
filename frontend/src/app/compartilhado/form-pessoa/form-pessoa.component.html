@@ -1,0 +1,86 @@
+<form #f="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="nome">Nome</label>
+    <input [(ngModel)]="pessoa.nomePessoa"
+           type="text"
+           [class.is-invalid]="!nome.valid && nome.touched"
+           class="form-control"
+           name="nome"
+           #nome="ngModel"
+           id="nome" required />
+    <div *ngIf="!nome.valid && nome.touched" class="invalid-feedback">
+      Digite o nome da pessoa.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="documento">Documento</label>
+    <input [(ngModel)]="pessoa.documentoPessoa"
+           type="text"
+           [class.is-invalid]="!documento.valid && documento.touched"
+           class="form-control"
+           name="documento"
+           #documento="ngModel"
+           id="documento" required />
+    <div *ngIf="!documento.valid && documento.touched" class="invalid-feedback">
+      Digite o documento da pessoa.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="datadenascimento">Data de Nascimento</label>
+    <input [(ngModel)]="pessoa.dataDeNascimento"
+           type="text"
+           [class.is-invalid]="!datadenascimento.valid && datadenascimento.touched"
+           class="form-control"
+           name="datadenascimento"
+           #datadenascimento="ngModel"
+           id="datadenascimento" required />
+    <div *ngIf="!datadenascimento.valid && datadenascimento.touched" class="invalid-feedback">
+      Digite data de nascimento da pessoa.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="nomedamae">Nome da Mãe</label>
+    <input [(ngModel)]="pessoa.nomeDaMaePessoa"
+           type="text"
+           [class.is-invalid]="!nomedamae.valid && nomedamae.touched"
+           class="form-control"
+           name="nomedamae"
+           #nomedamae="ngModel"
+           id="nomedamae" required />
+    <div *ngIf="!nomedamae.valid && nomedamae.touched" class="invalid-feedback">
+      Digite o nome da mãe da pessoa.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="nomedopai">Nome do pai</label>
+    <input [(ngModel)]="pessoa.nomeDoPaiPessoa"
+           type="text"
+           [class.is-invalid]="!nomedopai.valid && nomedopai.touched"
+           class="form-control"
+           name="nomedopai"
+           #nomedopai="ngModel"
+           id="nomedopai" required />
+    <div *ngIf="!nomedopai.valid && nomedopai.touched" class="invalid-feedback">
+      Digite o nome do pai da pessoa.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="tipo">Tipo</label>
+    <select
+      #tipo="ngModel"
+      class="form-control"
+      [class.is-invalid]="!tipo.valid && tipo.touched"
+      id="tipo"
+      name="tipo"
+      [(ngModel)]="pessoa.tipoPessoa"
+      required>
+      <option [ngValue]="undefined">Selecione...</option>
+      <option value="FISICA">FÍSICA</option>
+      <option value="JURIDICA">JURIDICA</option>
+    </select>
+    <div *ngIf="!tipo.valid && tipo.touched" class="invalid-feedback">
+      Selecione o tipo do operador.
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Salvar</button>
+</form>

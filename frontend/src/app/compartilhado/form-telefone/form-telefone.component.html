@@ -1,0 +1,48 @@
+<form #f="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="ddd">DDD</label>
+    <input [(ngModel)]="telefone.dddTelefone"
+           type="text"
+           [class.is-invalid]="!ddd.valid && ddd.touched"
+           class="form-control"
+           name="ddd"
+           #ddd="ngModel"
+           id="ddd" required />
+    <div *ngIf="!ddd.valid && ddd.touched" class="invalid-feedback">
+      Digite o ddd do telefone.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="numero">Número</label>
+    <input [(ngModel)]="telefone.numeroTelefone"
+           type="text"
+           [class.is-invalid]="!numero.valid && numero.touched"
+           class="form-control"
+           name="numero"
+           #numero="ngModel"
+           id="numero" required />
+    <div *ngIf="!numero.valid && numero.touched" class="invalid-feedback">
+      Digite o número do telefone.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="tipo">Tipo</label>
+    <select
+      #tipo="ngModel"
+      class="form-control"
+      [class.is-invalid]="!tipo.valid && tipo.touched"
+      id="tipo"
+      name="tipo"
+      [(ngModel)]="telefone.tipoTelefone"
+      required>
+      <option [ngValue]="undefined">Selecione...</option>
+      <option value="CELULAR">CELULAR</option>
+      <option value="FIXO">FIXO</option>
+      <option value="COMERCIAL">COMERCIAL</option>
+    </select>
+    <div *ngIf="!tipo.valid && tipo.touched" class="invalid-feedback">
+      Selecione o tipo do telefone.
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Salvar</button>
+</form>

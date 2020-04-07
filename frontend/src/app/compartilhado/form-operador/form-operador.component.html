@@ -1,0 +1,58 @@
+<form #f="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="nome">Nome</label>
+    <input [(ngModel)]="operador.nomeOperador"
+           type="text"
+           [class.is-invalid]="!nome.valid && nome.touched"
+           class="form-control"
+           name="nome"
+           #nome="ngModel"
+           id="nome" required/>
+    <div *ngIf="!nome.valid && nome.touched" class="invalid-feedback">
+      Digite o nome do operador.
+    </div>
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="operador.loginOperador"
+           type="text"
+           [class.is-invalid]="!login.valid && login.touched"
+           class="form-control"
+           name="login"
+           #login="ngModel"
+           id="login" required/>
+    <div *ngIf="!login.valid && login.touched" class="invalid-feedback">
+      Digite o login do operador.
+    </div>
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="operador.senhaOperador"
+           type="text"
+           [class.is-invalid]="!senha.valid && senha.touched"
+           class="form-control"
+           name="senha"
+           #senha="ngModel"
+           id="senha" required/>
+    <div *ngIf="!senha.valid && senha.touched" class="invalid-feedback">
+      Digite a senha do operador.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="perfil">Perfil</label>
+    <select
+      #perfil="ngModel"
+      class="form-control"
+      [class.is-invalid]="!perfil.valid && perfil.touched"
+      id="perfil"
+      name="perfil"
+      [(ngModel)]="operador.perfilOperador"
+      required>
+      <option [ngValue]="undefined">Selecione...</option>
+      <option value="GERENTE">GERENTE</option>
+      <option value="ANALISTA">ANALISTA</option>
+    </select>
+    <div *ngIf="!perfil.valid && perfil.touched" class="invalid-feedback">
+      Selecione o perfil do operador.
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Salvar</button>
+</form>

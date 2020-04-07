@@ -1,0 +1,26 @@
+<form #f="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="nome">Usuário: </label>
+    <input [(ngModel)]="usuario.nome"
+           type="text"
+           class="form-control" #nome="ngModel"
+           id="nome"
+           required />
+    <div *ngIf="!nome.valid && nome.touched" class="invalid-feedback">
+      Digite seu usuário.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="senha">Senha: </label>
+    <input [(ngModel)]="usuario.senha"
+           type="password"
+           class="form-control"
+           #senha="ngModel"
+           id="senha"
+           required />
+    <div *ngIf="!senha.valid && senha.touched" class="invalid-feedback">
+      Digite a sua senha.
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Login</button>
+</form>
