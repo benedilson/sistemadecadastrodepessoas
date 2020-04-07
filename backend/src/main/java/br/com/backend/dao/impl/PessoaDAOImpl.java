@@ -3,12 +3,14 @@ package br.com.backend.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 
 import br.com.backend.dao.interfaces.GenericoDAO;
 import br.com.backend.entidades.Pessoa;
 import br.com.backend.utils.JpaUtils;
 
+@Stateless
 public class PessoaDAOImpl implements GenericoDAO<Pessoa, Long> {
 
 	private EntityManager em;

@@ -2,6 +2,9 @@ package br.com.backend.dao.interfaces;
 
 import java.util.List;
 
+import javax.ejb.Remote;
+
+@Remote
 public interface GenericoDAO<T, K> {
 	List<T> all();
 	T byId(K id);
