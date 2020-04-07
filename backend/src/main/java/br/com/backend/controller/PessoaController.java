@@ -3,7 +3,10 @@ package br.com.backend.controller;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -12,27 +15,33 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import br.com.backend.dao.interfaces.GenericoDAO;
 import br.com.backend.entidades.Pessoa;
-import br.com.backend.services.PessoaServices;
 
+@RequestScoped
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @Path("pessoa")
 public class PessoaController {
 
 	private Gson gson = new Gson();
 
-	@EJB
-	PessoaServices servico;
+	@Inject
+	GenericoDAO<Pessoa, Long> servico;
 
 	public PessoaController() {
 
 	}
 
+	@PersistenceContext(unitName = "dev-backend")
+	private EntityManager entityManager;
+
 	@GET
-	@Produces("application/json")
 	public String all() {
 		Type type = new TypeToken<ArrayList<Pessoa>>() {
 		}.getType();
@@ -41,7 +50,6 @@ public class PessoaController {
 
 	@GET
 	@Path("{id}")
-	@Produces("application/json")
 	public String byId(@PathParam("id") String id) {
 		return gson.toJson(servico.byId(Long.valueOf(id)));
 	}
