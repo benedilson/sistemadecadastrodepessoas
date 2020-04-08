@@ -2,6 +2,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Operador} from '../../interfaces/operador';
 import {OperadorService} from '../../services/operador.service';
 import {ErrorMsgComponent} from '../../compartilhado/error-msg/error-msg.component';
+import {Usuario} from '../../classes/usuario';
+import {PessoaService} from '../../services/pessoa.service';
+import {AuthService} from '../login/auth.service';
 
 @Component({
   selector: 'app-listar-operador',
@@ -9,11 +12,12 @@ import {ErrorMsgComponent} from '../../compartilhado/error-msg/error-msg.compone
   styleUrls: ['./listar-operador.component.css']
 })
 export class ListarOperadorComponent implements OnInit {
+  public ususario: Usuario = this.authService.obtemDadosDoUsuario();
 
   public operadores: Operador[];
   @ViewChild(ErrorMsgComponent) errorMsgComponent: ErrorMsgComponent;
 
-  constructor(private operadorService: OperadorService) {
+  constructor(private operadorService: OperadorService, private authService: AuthService) {
   }
 
   ngOnInit() {

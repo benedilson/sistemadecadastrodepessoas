@@ -89,7 +89,7 @@ public class OperadorController {
 	@GET
 	@Path("{login/senha}")
 	public String buscaPorLoginESEnha(final @PathParam("login") String login, @PathParam("senha")  String senha) {
-		return buscaPorLoginESEnha(login, senha);
+		return gson.toJson(buscaPorLoginESEnha(login, senha));
 	}
 	
 	public void deleteById(Long id) {

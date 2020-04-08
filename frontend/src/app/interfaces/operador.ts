@@ -7,4 +7,6 @@ export interface Operador {
   senhaOperador: string;
   perfilOperador: perfil;
   dataDeCadastroOperador: string;
+
+  json(): Operador;
 }

@@ -3,34 +3,34 @@
     <div class="col-md-8 mx-auto">
       <app-error-msg></app-error-msg>
       <div class="text-right">
-        <button type="button" class="btn btn-success" (click)="getListaOperadores()" routerLink="/operador/criar">Novo operador</button>
+        <button type="button" class="btn btn-success" (click)="getListaTelefones()" routerLink="/telefone/criar">Novo telefone</button>
       </div>
-      <div class="text-center" *ngIf="!existemOperadores()">
+      <div class="text-center" *ngIf="!existemTelefones()">
         Nenhum operador cadastrado.
       </div>
     </div>
   </div>
-  <div class="row mt-3" *ngFor="let operador of operadores">
+  <div class="row mt-3" *ngFor="let telefone of telefones">
     <div class="col-md-8 mx-auto">
       <div class="card">
         <div class="card-header">
-          <p class="card-text">Nome</p>
-          <p class="card-text">Login</p>
-          <p class="card-text">Senha</p>
-          <p class="card-text">Perfil</p>
+          <p class="card-text">DDD</p>
+          <p class="card-text">Número</p>
+          <p class="card-text">Tipo</p>
           <p class="card-text">Data de Cadastro</p>
+          <p class="card-text">Login do Operador</p>
         </div>
         <div class="card-body">
-          <p class="card-text">{{operador.nomeOperador}}</p>
-          <p class="card-text">{{operador.loginOperador}}</p>
-          <p class="card-text">{{operador.senhaOperador}}</p>
-          <p class="card-text">{{operador.perfilOperador}}</p>
-          <p class="card-text">{{operador.dataDeCadastroOperador}}</p>
+          <p class="card-text">{{telefone.dddTelefone}}</p>
+          <p class="card-text">{{telefone.numeroTelefone}}</p>
+          <p class="card-text">{{telefone.tipoTelefone}}</p>
+          <p class="card-text">{{telefone.dataDeCadastroTelefone}}</p>
+          <p class="card-text">{{telefone.loginOperador}}</p>
         </div>
         <div class="card-footer">
           <div class="text-right">
-            <button type="button" class="btn btn-primary btn-sm ml-1" routerLink="/operador/editar/{{operador.idOperador}}">Editar</button>
-            <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deletaOperador(operador.idOperador)">Excluir</button>
+            <button type="button" class="btn btn-primary btn-sm ml-1" routerLink="/telefone/editar/{{telefone.idTelefone}}">Editar</button>
+            <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deletaTelefone(telefone.idTelefone)">Excluir</button>
           </div>
         </div>
       </div>

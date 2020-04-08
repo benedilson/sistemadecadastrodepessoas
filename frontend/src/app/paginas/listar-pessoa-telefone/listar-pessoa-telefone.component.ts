@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {PessoaService} from '../../services/pessoa.service';
+import {AuthService} from '../login/auth.service';
+import {ErrorMsgComponent} from '../../compartilhado/error-msg/error-msg.component';
 
 @Component({
   selector: 'app-listar-pessoa-telefone',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarPessoaTelefoneComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(ErrorMsgComponent) errorMsgComponent: ErrorMsgComponent;
+  constructor(private pessoaService: PessoaService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
+
+  getListaPessoas() {
+    this.pessoaService.getListaPessoas();
+  }
+
+  deletaPessoa(id: number) {
+    this.pessoaService.deletaPessoa(id)
+      .subscribe(
+        () => {this.getListaPessoas(); },
+        () => {this.errorMsgComponent.setError('Falha ao deletar pessoa'); });
+  }
+
+  // existemPessoas(): boolean {
+  //   return this.pessoas && this.pessoas.length > 0;
+  // }
+
 
 }

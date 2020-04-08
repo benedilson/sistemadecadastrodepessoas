@@ -3,6 +3,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Operador} from '../interfaces/operador';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,9 @@ export class OperadorService {
     return this.http.delete<Operador>(url);
   }
 
+  buscaLoginESenha(login: string, senha: string): Observable<Operador> {
+    const url = `${environment.sistemaDeCadastroApiUrl}/operador/${login}/${senha}`;
+    return this.http.get<Operador>(url).pipe(map(res => res.json()));
+  }
 }
 

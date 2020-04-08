@@ -33,7 +33,7 @@ export class ListarTelefoneComponent implements OnInit {
       });
   }
 
-  existemOperadores(): boolean {
+  existemTelefones(): boolean {
     return this.telefones && this.telefones.length > 0;
   }
 }

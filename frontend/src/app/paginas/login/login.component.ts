@@ -13,7 +13,7 @@ export class LoginComponent {
 
   public usuario: Usuario = new Usuario();
 
-  constructor(private authService: AuthService,) {
+  constructor(private authService: AuthService) {
   }
 
   onSubmit() {
