@@ -5,13 +5,17 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
-import br.com.backend.dao.interfaces.GenericoDAO;
+import br.com.backend.dao.interfaces.OperadorBuscaPorLoginESenha;
 import br.com.backend.entidades.Operador;
 import br.com.backend.utils.JpaUtils;
 
 @Stateless
-public class OperadorDAOImpl implements GenericoDAO<Operador, Long> {
+public class OperadorDAOImpl implements OperadorBuscaPorLoginESenha {
 
 	private EntityManager em;
 	private List<Operador> operadorList = null;
@@ -108,10 +112,33 @@ public class OperadorDAOImpl implements GenericoDAO<Operador, Long> {
 				em.remove(operadorTemp);
 				em.getTransaction().commit();
 			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+
+	@Override
+	public Operador pesquisaPorLoginESenha(String login, String senha) {
+		
+		em = null;
+		
+		try {
+			em = JpaUtils.getEntityManager();
+			operadorTemp = (Operador) em.createQuery("from Operador o where o.loginOperador like concat('%' + :loginOperador + '%') and o.senhaOperador like concat('%' + :senhaOperador + '%') ")
+						   .setParameter("loginOperador", login)
+						   .setParameter("senhaOperador", senha)
+						   .getSingleResult();
+			return operadorTemp;
 		} finally {
 			if (em != null) {
 				em.close();
 			}
 		}
 	}
+
 }

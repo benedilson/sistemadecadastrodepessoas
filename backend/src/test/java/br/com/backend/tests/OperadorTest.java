@@ -1,21 +1,53 @@
 package br.com.backend.tests;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Scanner;
+
+import org.junit.Assert;
 import org.junit.Test;
+
+import br.com.backend.dao.impl.OperadorDAOImpl;
+import br.com.backend.dao.interfaces.GenericoDAO;
+import br.com.backend.dao.interfaces.OperadorBuscaPorLoginESenha;
+import br.com.backend.entidades.Operador;
+import br.com.backend.utils.MetodosUteis;
 
 public class OperadorTest {
 
-//	private static Scanner SCANNER = null;
-//	private GenericoDAO<Operador, Long> operadorService = null;
-//	private Operador operador = null, operadorTemp = null;
-//	private List<Operador> operadores = null;
+	private static Scanner SCANNER = null;
+	private GenericoDAO<Operador, Long> operadorService = null;
+	private Operador operador = null, operadorTemp = null;
+	private List<Operador> operadores = null;
+
+	@Test
+	public void pesquisaPorLoginESenha() {
+
+		OperadorBuscaPorLoginESenha server = new OperadorDAOImpl();
+		Operador o = null;
+		try {
+			o = server.pesquisaPorLoginESenha("administrador", "administrador");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// Assert.assertNotNull(o);
+		if (o != null) {
+			System.out.println("Id = " + o.getIdOperador());
+			System.out.println("Data de cadastro = " + o.getDataDeCadastroOperador());
+			System.out.println("Login = " + o.getLoginOperador());
+			System.out.println("Nome = " + o.getNomeOperador());
+			System.out.println("Perfil = " + o.getPerfilOperador());
+			System.out.println("Senha = " + o.getSenhaOperador());
+		}
+	}
 
 	@Test
 	public void verificandoInsertOperador() {
 //		operador = new Operador();
-//		operador.setNomeOperador("Benedilson");
-//		operador.setLoginOperador("administrador");
-//		operador.setSenhaOperador("administrador");
-//		operador.setPerfilOperador(Operador.Perfil.ADMINISTRADOR);
+//		operador.setNomeOperador("Antonio");
+//		operador.setLoginOperador("g");
+//		operador.setSenhaOperador("g");
+//		operador.setPerfilOperador(Operador.Perfil.GERENTE);
 //		operador.setDataDeCadastroOperador(MetodosUteis.AjustaLocalDate(LocalDate.now()));
 //
 //		try {
