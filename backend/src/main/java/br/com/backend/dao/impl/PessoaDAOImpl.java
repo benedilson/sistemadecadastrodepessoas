@@ -3,15 +3,17 @@ package br.com.backend.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 
-import br.com.backend.dao.interfaces.GenericoDAO;
+import br.com.backend.dao.interfaces.GenericoDAORemote;
 import br.com.backend.entidades.Pessoa;
 import br.com.backend.utils.JpaUtils;
 
 @Stateless
-public class PessoaDAOImpl implements GenericoDAO<Pessoa, Long> {
+@LocalBean
+public class PessoaDAOImpl implements GenericoDAORemote<Pessoa, Long> {
 
 	private EntityManager em;
 	private List<Pessoa> PessoaList = null;

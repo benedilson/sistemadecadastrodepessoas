@@ -34,5 +34,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/benedilson/servidores/wildfly-18.0.1.Final/bin/client/jboss-client.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

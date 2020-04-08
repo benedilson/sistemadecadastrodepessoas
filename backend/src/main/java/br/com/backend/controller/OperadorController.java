@@ -20,9 +20,12 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import br.com.backend.dao.interfaces.GenericoDAO;
+import br.com.backend.dao.interfaces.GenericoDAORemote;
+import br.com.backend.dao.interfaces.OperadorBuscaPorLoginESenha;
 import br.com.backend.entidades.Operador;
+import javax.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 @RequestScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -32,7 +35,11 @@ public class OperadorController {
 	private Gson gson = new Gson();
 
 	@Inject
-	GenericoDAO<Operador, Long> servico;
+	GenericoDAORemote<Operador, Long> servico;
+	
+	@Inject
+	OperadorBuscaPorLoginESenha busca;
+	
 
 	public OperadorController() {
 
@@ -79,6 +86,12 @@ public class OperadorController {
 		deleteById(Long.valueOf(id));
 	}
 
+	@GET
+	@Path("{login/senha}")
+	public String buscaPorLoginESEnha(final @PathParam("login") String login, @PathParam("senha")  String senha) {
+		return buscaPorLoginESEnha(login, senha);
+	}
+	
 	public void deleteById(Long id) {
 		servico.deleteById(id);
 	}

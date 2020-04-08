@@ -1,22 +1,19 @@
 package br.com.backend.tests;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import br.com.backend.dao.impl.OperadorDAOImpl;
-import br.com.backend.dao.interfaces.GenericoDAO;
+import br.com.backend.dao.interfaces.GenericoDAORemote;
 import br.com.backend.dao.interfaces.OperadorBuscaPorLoginESenha;
 import br.com.backend.entidades.Operador;
-import br.com.backend.utils.MetodosUteis;
 
-public class OperadorTest {
+public class GeralTest {
 
 	private static Scanner SCANNER = null;
-	private GenericoDAO<Operador, Long> operadorService = null;
+	private GenericoDAORemote<Operador, Long> operadorService = null;
 	private Operador operador = null, operadorTemp = null;
 	private List<Operador> operadores = null;
 

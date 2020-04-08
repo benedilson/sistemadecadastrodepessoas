@@ -20,9 +20,11 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import br.com.backend.dao.interfaces.GenericoDAO;
+import br.com.backend.dao.interfaces.GenericoDAORemote;
 import br.com.backend.entidades.Telefone;
+import javax.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 @RequestScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -32,7 +34,7 @@ public class TelefoneController {
 	private Gson gson = new Gson();
 
 	@Inject
-	GenericoDAO<Telefone, Long> servico;
+	GenericoDAORemote<Telefone, Long> servico;
 
 	public TelefoneController() {
 
