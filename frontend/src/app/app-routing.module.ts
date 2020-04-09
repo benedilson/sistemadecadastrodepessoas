@@ -9,7 +9,6 @@ import {InserirPessoaComponent} from './paginas/inserir-pessoa/inserir-pessoa.co
 import {EditarTelefoneComponent} from './paginas/editar-telefone/editar-telefone.component';
 import {InserirTelefoneComponent} from './paginas/inserir-telefone/inserir-telefone.component';
 import {ListarPessoaComponent} from './paginas/listar-pessoa/listar-pessoa.component';
-import {ListarTelefoneComponent} from './paginas/listar-telefone/listar-telefone.component';
 import {AuthGuard} from './guard/auth-guard';
 import {TelefoneDeactivateGuardService} from './guard/telefone-deactivate-guard.service';
 import {PessoaDeactivateGuardService} from './guard/pessoa-deactivate-guard.service';
@@ -32,8 +31,6 @@ const routes: Routes = [
     canDeactivate: [PessoaDeactivateGuardService], canLoad: [AuthGuard]},
   {path: 'pessoa/criar', component: InserirPessoaComponent, canActivate: [AuthGuard],
     canDeactivate: [PessoaDeactivateGuardService], canLoad: [AuthGuard]},
-
-  {path: 'telefone/listar', component: ListarTelefoneComponent, canActivate: [AuthGuard], canLoad: [AuthGuard]},
   {path: 'telefone/editar/:id', component: EditarTelefoneComponent, canActivate: [AuthGuard],
     canDeactivate: [TelefoneDeactivateGuardService], canLoad: [AuthGuard]},
   {path: 'telefone/criar', component: InserirTelefoneComponent, canActivate: [AuthGuard],

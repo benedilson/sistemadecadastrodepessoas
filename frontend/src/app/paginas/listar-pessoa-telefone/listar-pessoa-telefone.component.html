@@ -5,18 +5,17 @@
       <div *ngIf="ususario.perfilUsuario === 'GERENTE'" class="text-right">
         <button type="button" class="btn btn-success" (click)="getListaPessoas()" routerLink="/pessoa/criar">Nova pessoa</button>
       </div>
-      <div class="text-center" *ngIf="!existemPessoas()">
-        Nenhuma pessoa cadastrada.
-      </div>
     </div>
   </div>
-  <div class="row mt-3" *ngFor="let pessoa of pessoas">
+  <div class="row mt-3" *ngFor="let pessoa of p">
     <div class="col-md-8 mx-auto">
       <div class="card">
         <div class="card-header">
           <p class="card-text">Nome</p>
           <p class="card-text">Documento</p>
           <p class="card-text">Data de Nascimento</p>
+          <p class="card-text">Nome da mãe</p>
+          <p class="card-text">Nome do pai</p>
           <p class="card-text">Data de Cadastro</p>
           <p class="card-text">Login</p>
           <p class="card-text">Tipo</p>
@@ -26,15 +25,56 @@
           <p class="card-text">{{pessoa.nomePessoa}}</p>
           <p class="card-text">{{pessoa.documentoPessoa}}</p>
           <p class="card-text">{{pessoa.dataDeNascimento}}</p>
+          <p class="card-text">{{pessoa.nomeDaMaePessoa}}</p>
+          <p class="card-text">{{pessoa.nomeDoPaiPessoa}}</p>
           <p class="card-text">{{pessoa.dataDeCadastroPessoa}}</p>
           <p class="card-text">{{pessoa.loginOperador}}</p>
           <p class="card-text">{{pessoa.tipoPessoa}}</p>
         </div>
         <div class="card-footer">
-          <div class="text-right">
+          <div *ngIf="ususario.perfilUsuario === 'GERENTE'" class="text-right">
             <button type="button" class="btn btn-primary btn-sm ml-1" routerLink="/pessoa/byid/{{pessoa.idPessoa}}">Visualizar</button>
             <button *ngIf="ususario.perfilUsuario === 'GERENTE'" type="button" class="btn btn-primary btn-sm ml-1" routerLink="/pessoa/editar/{{pessoa.idPessoa}}">Editar</button>
             <button *ngIf="ususario.perfilUsuario === 'GERENTE'" type="button" class="btn btn-danger btn-sm ml-1" (click)="deletaPessoa(pessoa.idPessoa)">Excluir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-3">
+    <div class="row">
+      <div *ngIf="ususario.perfilUsuario === 'GERENTE'" class="col-md-8 mx-auto">
+        <app-error-msg></app-error-msg>
+        <div class="text-right">
+          <button type="button" class="btn btn-success" (click)="existemTelefones()" routerLink="/telefone/criar">Novo telefone</button>
+        </div>
+        <div class="text-center" *ngIf="!t">
+          Nenhum telefone cadastrado
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3" *ngFor="let telefone of t">
+      <div class="col-md-8 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            <p class="card-text">DDD</p>
+            <p class="card-text">Número</p>
+            <p class="card-text">Tipo</p>
+            <p class="card-text">Data de Cadastro</p>
+            <p class="card-text">Login do Operador</p>
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{telefone.dddTelefone}}</p>
+            <p class="card-text">{{telefone.numeroTelefone}}</p>
+            <p class="card-text">{{telefone.tipoTelefone}}</p>
+            <p class="card-text">{{telefone.dataDeCadastroTelefone}}</p>
+            <p class="card-text">{{telefone.loginOperador}}</p>
+          </div>
+          <div class="card-footer">
+            <div *ngIf="ususario.perfilUsuario === 'GERENTE'" class="text-right">
+              <button type="button" class="btn btn-primary btn-sm ml-1" routerLink="/telefone/editar/{{telefone.idTelefone}}">Editar</button>
+              <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deletaTelefone(telefone.idTelefone)">Excluir</button>
+            </div>
           </div>
         </div>
       </div>
